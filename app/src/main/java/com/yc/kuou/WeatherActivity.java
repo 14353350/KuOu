@@ -1,5 +1,6 @@
 package com.yc.kuou;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yc.kuou.gson.Forecast;
 import com.yc.kuou.gson.Weather;
+import com.yc.kuou.service.AutoUpdateService;
 import com.yc.kuou.util.HttpUtil;
 import com.yc.kuou.util.Utility;
 
@@ -225,5 +227,8 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+        //启动后台更新服务
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
